@@ -1,0 +1,3 @@
+This is a naive port of the Objective-C "RaiseMan" example used in "Cocoa Programming for Mac OS X," by Aaron Hillegass.
+
+All credit for the code and design goes to Aaron. All bugs I introduced belong to me :)
