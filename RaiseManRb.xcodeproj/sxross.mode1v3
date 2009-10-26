@@ -277,7 +277,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {186, 669}}</string>
+							<string>{{0, 0}, {186, 870}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -289,14 +289,14 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {203, 687}}</string>
+						<string>{{0, 0}, {203, 888}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>MainColumn</string>
 							<real>186</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>239 79 1078 728 0 0 1920 1178 </string>
+						<string>78 102 1222 929 0 0 1920 1178 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -326,7 +326,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>B66F631C1095713D00EC3F63</string>
+										<string>B66F6340109601B500EC3F63</string>
 										<key>history</key>
 										<array>
 											<string>B6E9320B10920E4400B4B87E</string>
@@ -343,14 +343,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {870, 459}}</string>
+								<string>{{0, 0}, {1014, 660}}</string>
 								<key>RubberWindowFrame</key>
-								<string>239 79 1078 728 0 0 1920 1178 </string>
+								<string>78 102 1222 929 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>459pt</string>
+							<string>660pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -363,9 +363,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 464}, {870, 223}}</string>
+								<string>{{0, 665}, {1014, 223}}</string>
 								<key>RubberWindowFrame</key>
-								<string>239 79 1078 728 0 0 1920 1178 </string>
+								<string>78 102 1222 929 0 0 1920 1178 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -374,7 +374,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>870pt</string>
+					<string>1014pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -529,7 +529,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>B66F63241095713D00EC3F63</string>
+		<string>B66F6341109601B500EC3F63</string>
 		<string>B66F63251095713D00EC3F63</string>
 		<string>B66F63261095713D00EC3F63</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -538,7 +538,7 @@
 		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
-	<string>239 79 1078 728 0 0 1920 1178 </string>
+	<string>78 102 1222 929 0 0 1920 1178 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

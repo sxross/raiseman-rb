@@ -16,10 +16,18 @@ class MyDocument < NSDocument
     super
   end
   
+  def employees=(newValue)
+    return if newValue === employees
+    
+    employees.each {|person| self.stopObservingPerson(person)}
+    employees = newValue
+    employees.each {|person| self.startObservingPerson(person)}
+  end
+  
   ########## Undo support ##########
   def insertObject(p, inEmployeesAtIndex:index)
     NSLog("adding #{p} to #{employees}")
-    undo = @undoManager
+    undo = self.undoManager
     undo.prepareWithInvocationTarget(self, removeObjectFromEmployeesAtIndex:index)
     undo.setActionName("Insert Person") unless undo.isUndoing
     employees.insertObject(p, atIndex:index)
@@ -31,6 +39,27 @@ class MyDocument < NSDocument
     undo.prepareWithInvocationTarget(self, addObject(p, inEmployeesAtIndex:index))
     undo.setActionName("Delete Person") unless undo.isUndoing
     employees.removeObject(p, atIndex:index)
+  end
+  
+  def changeKeyPath(keyPath, ofObject:obj, change:change, toValue:newValue)
+    undo = self.undoManager
+    
+    oldValue = change.objectForKey(NSKeyValueChangeOldKey)
+    NSLog("In changeKeyPath, oldValue is: #{oldValue}")
+    oldValue = nil # to enable gc?
+    
+    undo.prepareWithInvocationTarget(self, changeKeyPath:keyPath, ofObject:obj, toValue:oldValue)
+    undo.setActionName("Edit")
+  end
+  
+  def startObservingPerson(person)
+    ['personName', 'expectedRaise'].each do |key|
+      person.addObserver(self, forKeyPath:key, options:NSKeyValueObservingOptionOld, context:nil)
+    end
+  end
+  
+  def stopObservingPerson(person)
+    ['personName', 'expectedRaise'].each {|key| person.removeObserver(p, forKeyPath:key)}
   end
   ########## /Undo support ##########
   
@@ -45,8 +74,8 @@ class MyDocument < NSDocument
     end
     
     undo = self.undoManager
-    NSLog("Grouping level: #{undo.groupingLevel}")
-    if undo.groupingLevel != 0  # Yuck. Evaluates to what?
+    NSLog("Undo manager is #{undo}")
+    if undo.groupingLevel > 0  # Zero is not false in Ruby!
       undo.endUndoGrouping
       undo.beginUndoGrouping
     end
