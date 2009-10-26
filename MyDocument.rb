@@ -7,7 +7,7 @@
 #
 
 class MyDocument < NSDocument
-  attr_accessor :employees, :tableView
+  attr_accessor :employees, :tableView, :employeeController
   
   def init
     NSLog('initializing document')
@@ -21,19 +21,15 @@ class MyDocument < NSDocument
     NSLog("adding #{p} to #{employees}")
     undo = @undoManager
     undo.prepareWithInvocationTarget(self, removeObjectFromEmployeesAtIndex:index)
-    if !undo.isUndoing
-      undo.setActionName("Insert Person")
-    end
+    undo.setActionName("Insert Person") unless undo.isUndoing
     employees.insertObject(p, atIndex:index)
   end
     
   def removeObject(p, fromEmployeesAtIndex:index)
     NSLog("removing #{p} from #{employees}")
-    undo = self.undoManager
+    undo = self.undoManager # REVIEW: @undoManager? Use inline?
     undo.prepareWithInvocationTarget(self, addObject(p, inEmployeesAtIndex:index))
-    if !undo.isUndoing
-      undo.setActionName("Delete Person")
-    end
+    undo.setActionName("Delete Person") unless undo.isUndoing
     employees.removeObject(p, atIndex:index)
   end
   ########## /Undo support ##########
@@ -48,8 +44,9 @@ class MyDocument < NSDocument
       return
     end
     
-    undo = @undoManager
-    if undo.groupingLevel
+    undo = self.undoManager
+    NSLog("Grouping level: #{undo.groupingLevel}")
+    if undo.groupingLevel != 0  # Yuck. Evaluates to what?
       undo.endUndoGrouping
       undo.beginUndoGrouping
     end
