@@ -26,19 +26,21 @@ class MyDocument < NSDocument
   
   ########## Undo support ##########
   def insertObject(p, inEmployeesAtIndex:index)
-    NSLog("adding #{p} to #{employees}")
+    NSLog("inserting #{p} inEmployeees #{employees} at index #{index}")
+    index = index.nil? ? employees.length : index
     undo = self.undoManager
     undo.prepareWithInvocationTarget(self, removeObjectFromEmployeesAtIndex:index)
     undo.setActionName("Insert Person") unless undo.isUndoing
     employees.insertObject(p, atIndex:index)
   end
     
-  def removeObject(p, fromEmployeesAtIndex:index)
-    NSLog("removing #{p} from #{employees}")
+  def removeObjectFromEmployeesAtIndex(index)
+    NSLog("removing #{employees} at index #{index}")
+    p = employees[index]
     undo = self.undoManager # REVIEW: @undoManager? Use inline?
     undo.prepareWithInvocationTarget(self, addObject(p, inEmployeesAtIndex:index))
     undo.setActionName("Delete Person") unless undo.isUndoing
-    employees.removeObject(p, atIndex:index)
+    employees.removeObjectAtIndex(index)
   end
   
   def changeKeyPath(keyPath, ofObject:obj, change:change, toValue:newValue)
